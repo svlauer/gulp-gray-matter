@@ -71,18 +71,30 @@ function gulpGrayMatter(options) {
    */
   function setOptions(opts) {
     opts = typeof opts === 'object' ? opts : {};
+
     return {
-      property: typeof opts.property === 'string' ? opts.property : 'data',
-      remove: typeof opts.remove === 'boolean' ? opts.remove : true,
-      trim: typeof opts.trim === 'boolean' ? opts.trim : true,
-      setData: typeof opts.setData === 'function' ? opts.setData : setData,
-      grayMatter: {
-        delims: opts.delims || '---',
-        eval: typeof opts.eval === 'boolean' ? opts.eval : true,
-        lang: opts.lang || 'yaml',
-        parser: opts.parser || undefined
-      }
+      property: extractOption(opts, 'property', 'data'),
+      remove: extractOption(opts, 'remove', true),
+      trim: extractOption(opts, 'trim', true),
+      setData: extractOption(opts, 'setData', setData),
+      grayMatter: opts
     };
   }
 
+
+  /**
+   * Return an option value (or its default value) and remove the corresponding key
+   * from the options object
+   *
+   * @param  {object} opts          custom options
+   * @param  {string} name          name of the option to be extracted
+   * @param  {mixed}  defaultValue  defaultvalue
+   *
+   * @return {mixed} value  opts[name] or defaultValue
+   */
+  function extractOption(opts, name, defaultValue) {
+    var value = typeof opts[name] === typeof defaultValue ? opts[name] : defaultValue;
+    delete opts[name];
+    return value;
+  }
 }

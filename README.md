@@ -77,9 +77,7 @@ rendering plugin like [gulp-jade](https://www.npmjs.com/package/gulp-jade).
 ## Options
 
 Beside its own options, *gulp-gray-matter* also supports all
-[gray-matter options](https://www.npmjs.com/package/gray-matter#options):
-`delims`, `eval`, `lang` and `parser`
-
+[gray-matter options](https://www.npmjs.com/package/gray-matter#options).
 
 ### property
 
